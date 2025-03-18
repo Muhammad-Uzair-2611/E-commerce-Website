@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 const Category = () => {
   return (
     <div
-      className="border-r border-gray-200 w-[30%] h-20 bg-pink-300  
-    "
+      className="border-r h-auto mt-2 border-gray-200 w-[25%] [&>div]:pl-10 py-7 
+      [&>div]:cursor-pointer [&>div]:font-semibold [&>div]:hover:bg-gray-100 
+      [&>div]:p-2"
     >
       <div>
         <Link>Women's Fashion</Link>
