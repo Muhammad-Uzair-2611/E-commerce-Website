@@ -5,7 +5,7 @@ import Slider from "../Components/HomeComps/Slider";
 const Home = () => {
   return (
     <>
-      <div className="flex">
+      <div className="flex h-100">
         <Category />
         <Slider />
       </div>
