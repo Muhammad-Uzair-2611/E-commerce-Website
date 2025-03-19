@@ -5,7 +5,7 @@ import Omega_Watch from "../../assets/Slider_Img_03.png";
 const Slider = () => {
   return (
     <div className="w-full h-full flex items-center relative justify-center p-8  ">
-      <div className="slider w-auto h-90 overflow-hidden flex [&>*]:shrink-0">
+      <div className="slider rounded-sm w-auto h-90 overflow-hidden flex [&>*]:shrink-0">
         <div className=" slider_Images bg-black w-full h-full hidden relative flex ">
           <div
             className="w-[50%] relative h-full py-20 px-10 flex flex-col items-start 
@@ -32,7 +32,7 @@ const Slider = () => {
             />
           </div>
         </div>
-        <div className="hidden slider_Images w-2/2  relative flex ">
+        <div className="hidden slider_Images w-2/2 relative flex ">
           <div className=" absolute z-50 h-full py-20 px-5 flex flex-col items-start ">
             <div className="flex flex-col text-white">
               <h1 className="text-[27px] mb-1 font-bold">METAMORPHOSIS PACK</h1>
@@ -64,7 +64,7 @@ const Slider = () => {
             <img
               className="w-full h-full"
               src={Omega_Watch}
-              alt="Omega_Watches"
+              alt="Omega Watches"
             />
           </div>
         </div>
