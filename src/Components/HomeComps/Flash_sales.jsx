@@ -1,6 +1,24 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 const Flash_sales = () => {
+  //*Time Funcation
+  const [timeLeft, setTimeLeft] = useState(4 * 24 * 60 * 60); // 4 days in seconds
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const days = Math.floor(timeLeft / (60 * 60 * 24));
+  const hours = Math.floor((timeLeft % (60 * 60 * 24)) / (60 * 60));
+  const minutes = Math.floor((timeLeft % (60 * 60)) / 60);
+  const seconds = timeLeft % 60;
+
   return (
     <div className="Main w-full p-6 iflex flex-col gap-y-3">
       <div className="w-full flex flex-col items-start ">
@@ -17,8 +35,8 @@ const Flash_sales = () => {
             >
               <li>
                 <div>
-                  <span className="text-sm">Days</span>
-                  <span className="text-3xl font-bold">03</span>
+                  <span className="text-xs font-bold">Days</span>
+                  <span className="text-3xl font-bold">{days}</span>
                 </div>
               </li>
               <li>
@@ -26,8 +44,8 @@ const Flash_sales = () => {
               </li>
               <li>
                 <div>
-                  <span className="text-sm">Hours</span>
-                  <span className="text-3xl font-bold">12</span>
+                  <span className="text-xs font-bold">Hours</span>
+                  <span className="text-3xl font-bold">{hours}</span>
                 </div>
               </li>
               <li>
@@ -35,8 +53,8 @@ const Flash_sales = () => {
               </li>
               <li>
                 <div>
-                  <span className="text-sm">Minutes</span>
-                  <span className="text-3xl font-bold">54</span>
+                  <span className="text-xs font-bold">Minutes</span>
+                  <span className="text-3xl font-bold">{minutes}</span>
                 </div>
               </li>
               <li>
@@ -44,15 +62,19 @@ const Flash_sales = () => {
               </li>
               <li>
                 <div>
-                  <span className="text-sm">Seconds</span>
-                  <span className="text-3xl font-bold">05</span>
+                  <span className="text-xs font-bold">Seconds</span>
+                  <span className="text-3xl font-bold">{seconds}</span>
                 </div>
               </li>
             </ul>
           </div>
-          <div className="buttons border w-10 h-full">
-            <span className="w-10 bg-gray-400 h-5  ">1</span>
-            <span className="w-10 bg-gray-400 h-5  ">2</span>
+          <div className="flex buttons w-15 h-full gap-x-1">
+            <div className="p-1 text-neutral-600 flex justify-center items-center rotate-180 bg-gray-300 w-[50%] rounded-full text-center">
+              <FaArrowRight />
+            </div>
+            <div className="p-1 text-neutral-600 flex justify-center items-center bg-gray-300 w-[50%] rounded-full text-center">
+              <FaArrowRight />
+            </div>
           </div>
         </div>
       </div>
