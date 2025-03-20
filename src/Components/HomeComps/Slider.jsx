@@ -140,9 +140,22 @@ const Slider = () => {
     const interval = setInterval(() => {
       if (Img_Num === Images.length - 1) {
         Img_Ref[0].scrollIntoView({ behavior: "instant", block: "start" });
+        li_Ref[0].style.backgroundColor = "red";
+        li_Ref[0].style.border = "1px solid white";
+        li_Ref[0].style.transform = "scale(1.5)";
+        li_Ref[Images.length - 1].style.backgroundColor = "";
+        li_Ref[Images.length - 1].style.border = "";
+        li_Ref[Images.length - 1].style.transform = "";
+
         Img_Num = 0;
       } else {
         Img_Num++;
+        li_Ref[Img_Num].style.backgroundColor = "red";
+        li_Ref[Img_Num].style.border = "1px solid white";
+        li_Ref[Img_Num].style.transform = "scale(1.5)";
+        li_Ref[Img_Num - 1].style.backgroundColor = "";
+        li_Ref[Img_Num - 1].style.border = "";
+        li_Ref[Img_Num - 1].style.transform = "";
         Img_Ref[Img_Num].scrollIntoView({ behavior: "smooth" });
       }
     }, 3000);
