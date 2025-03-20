@@ -1,16 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import iphone_14_Pro from "../../assets/Slider_Img_01.png";
 import Omega_Watch from "../../assets/Slider_Img_03.png";
 import Cosmetics from "../../assets/Slider_Img_04.png";
 import Groceries from "../../assets/Slider_Img_05.png";
 
 const Slider = () => {
-  //* States & Ref
-  const Img_Ref = useRef([]);
-  const li_Ref = useRef([]);
-
-  //*Variables & Constants
-  let Img_Num = 0;
+  const [currentIndex, setcurrentIndex] = useState(0);
   const Images = [
     {
       id: 1,
@@ -135,32 +130,16 @@ const Slider = () => {
     },
   ];
 
-  //*Effects
   useEffect(() => {
     const interval = setInterval(() => {
-      if (Img_Num === Images.length - 1) {
-        Img_Ref[0].scrollIntoView({ behavior: "instant", block: "start" });
-        li_Ref[0].style.backgroundColor = "red";
-        li_Ref[0].style.border = "1px solid white";
-        li_Ref[0].style.transform = "scale(1.5)";
-        li_Ref[Images.length - 1].style.backgroundColor = "";
-        li_Ref[Images.length - 1].style.border = "";
-        li_Ref[Images.length - 1].style.transform = "";
-
-        Img_Num = 0;
-      } else {
-        Img_Num++;
-        li_Ref[Img_Num].style.backgroundColor = "red";
-        li_Ref[Img_Num].style.border = "1px solid white";
-        li_Ref[Img_Num].style.transform = "scale(1.5)";
-        li_Ref[Img_Num - 1].style.backgroundColor = "";
-        li_Ref[Img_Num - 1].style.border = "";
-        li_Ref[Img_Num - 1].style.transform = "";
-        Img_Ref[Img_Num].scrollIntoView({ behavior: "smooth" });
-      }
+      setcurrentIndex((prevSlide) =>
+        prevSlide === Images.length - 1 ? 0 : prevSlide + 1
+      );
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -170,8 +149,12 @@ const Slider = () => {
           {Images.map((_, index) => (
             <li
               key={index}
-              ref={(el) => (li_Ref[index] = el)}
-              className="w-2 h-2 rounded-full bg-gray-200"
+              className={`w-2 h-2 rounded-full transition-all ease-in duration-400 
+              ${
+                currentIndex === index
+                  ? "bg-red-500 border border-white scale-150"
+                  : "bg-gray-200 border border-white  "
+              }`}
             ></li>
           ))}
         </ul>
@@ -184,8 +167,9 @@ const Slider = () => {
           return (
             <div
               key={img.id}
-              ref={(el) => (Img_Ref[index] = el)}
-              className=" slider_Images bg-black w-2/2 relative flex "
+              // ref={(el) => (Img_Ref[index] = el)}
+              className="transition-transform ease-in  duration-500 slider_Images bg-black w-2/2 relative flex "
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {img.content}
             </div>
